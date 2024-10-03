@@ -20,6 +20,7 @@ public class Spawner : MonoBehaviour
         spawnTimer -= Time.deltaTime;
         if(spawnTimer <= 0 )
         {
+            SpawnAsteroid();
             spawnTimer = 3;
         }
     }
@@ -32,5 +33,7 @@ public class Spawner : MonoBehaviour
     private void SpawnAsteroid() /// heheh that rhymes
     {
         FindSpawnPos();
+        GameObject go = Instantiate(asteroid, spawnPos, Quaternion.identity);
+        go.GetComponent<Rigidbody2D>().AddForce(-transform.up * 2, ForceMode2D.Impulse);
     }
 }
